@@ -1,0 +1,11 @@
+product_id,product_name,category,subcategory,supplier_id,cost_price,selling_price,weight_kg,is_active,created_at
+P001,Samsung 4K TV 55inch,Electronics,Television,S001,25000,35000,12.5,true,2022-01-01
+P002,Nike Running Shoes,Footwear,Sports Shoes,S002,2500,4999,0.8,true,2022-01-01
+P003,Cotton Bed Sheet King,Home & Living,Bedding,S003,800,1499,1.2,true,2022-01-01
+P004,Instant Pot 6Qt,Kitchen,Appliances,S004,4500,7999,5.2,true,2022-01-15
+P005,iPhone 14 128GB,Electronics,Mobile,S001,55000,79999,0.2,true,2022-02-01
+P006,Yoga Mat Premium,Sports,Fitness,S005,600,1299,1.5,true,2022-02-01
+P007,Coffee Table Wood,Furniture,Living Room,S006,3500,6499,15.0,true,2022-02-15
+P008,Whey Protein 2kg,Health,Supplements,S007,1800,3499,2.0,true,2022-03-01
+P009,Levi's Jeans 32,Clothing,Bottoms,S008,1500,2999,0.6,true,2022-03-01
+P010,Air Purifier HEPA,Electronics,Home,S001,8000,14999,4.5,false,2022-03-15

@@ -1,0 +1,12 @@
+customer_id,first_name,last_name,email,phone,segment,region,country,created_at,updated_at
+C001,Rahul,Sharma,rahul.sharma@email.com,+91-9876543210,PREMIUM,West,India,2022-01-15 08:23:11,2024-01-20 14:30:00
+C002,Priya,Patel,priya.patel@email.com,+91-9823456789,STANDARD,North,India,2022-02-20 10:15:33,2024-02-18 09:45:00
+C003,Amit,Kumar,amit.kumar@email.com,+91-9734567890,PREMIUM,South,India,2022-01-30 14:45:22,2024-03-10 11:20:00
+C004,Sneha,Reddy,sneha.reddy@email.com,+91-9645678901,STANDARD,South,India,2022-03-05 09:30:45,2024-01-05 16:55:00
+C005,Vikram,Singh,vikram.singh@email.com,+91-9556789012,BRONZE,North,India,2022-04-10 11:20:18,2024-02-28 08:30:00
+C006,Ananya,Gupta,ananya.gupta@email.com,+91-9467890123,PREMIUM,East,India,2022-02-14 16:45:55,2024-03-15 13:45:00
+C007,Rohan,Mehta,rohan.mehta@email.com,+91-9378901234,STANDARD,West,India,2022-05-20 13:10:30,2024-01-30 10:15:00
+C008,Kavya,Nair,kavya.nair@email.com,+91-9289012345,BRONZE,South,India,2022-06-15 08:55:42,2024-02-10 15:20:00
+C009,Arjun,Joshi,arjun.joshi@email.com,+91-9190123456,PREMIUM,West,India,2022-03-25 15:30:15,2024-03-20 09:10:00
+C010,Divya,Menon,divya.menon@email.com,+91-9001234567,STANDARD,South,India,2022-07-08 10:45:28,2024-01-15 12:40:00
+C001,Rahul,Sharma,rahul.sharma@email.com,+91-9876543210,PREMIUM,West,India,2022-01-15 08:23:11,2024-01-20 14:30:00

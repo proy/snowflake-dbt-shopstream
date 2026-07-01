@@ -1,0 +1,2 @@
+return_id,order_id,product_id,customer_id,return_reason,return_status,refund_amount,refund_method,return_date,created_at
+RT001,O005,P005,C005,DEFECTIVE,COMPLETED,79999,CREDIT_CARD,2024-01-22,2024-01-22 10:00:00

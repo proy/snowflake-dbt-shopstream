@@ -1,0 +1,9 @@
+store_id,store_name,store_type,city,region,state,pincode,opened_date,manager_id,is_active
+ST001,ShopStream Mumbai Central,Flagship,Mumbai,West,Maharashtra,400001,2022-01-15,E001,true
+ST002,ShopStream Delhi Hub,Flagship,Delhi,North,Delhi,110001,2022-02-01,E002,true
+ST003,ShopStream Bangalore Tech,Standard,Bangalore,South,Karnataka,560001,2022-03-01,E003,true
+ST004,ShopStream Chennai Marina,Standard,Chennai,South,Tamil Nadu,600001,2022-04-01,E004,true
+ST005,ShopStream Pune Express,Express,Pune,West,Maharashtra,411001,2022-05-01,E005,true
+ST006,ShopStream Hyderabad Central,Standard,Hyderabad,South,Telangana,500001,2022-06-01,E006,true
+ST007,ShopStream Kolkata Hub,Standard,Kolkata,East,West Bengal,700001,2022-07-01,E007,true
+ST008,ShopStream Jaipur Express,Express,Jaipur,North,Rajasthan,302001,2022-08-01,E008,false

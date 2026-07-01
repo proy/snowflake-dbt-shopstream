@@ -1,0 +1,11 @@
+employee_id,first_name,last_name,email,role,store_id,salary,hire_date,is_active
+E001,Rajesh,Kumar,rajesh.kumar@shopstream.in,Store Manager,ST001,75000,2022-01-01,true
+E002,Meena,Sharma,meena.sharma@shopstream.in,Store Manager,ST002,72000,2022-01-15,true
+E003,Suresh,Patel,suresh.patel@shopstream.in,Store Manager,ST003,70000,2022-02-15,true
+E004,Lakshmi,Reddy,lakshmi.reddy@shopstream.in,Store Manager,ST004,70000,2022-03-15,true
+E005,Ganesh,Mehta,ganesh.mehta@shopstream.in,Store Manager,ST005,65000,2022-04-15,true
+E006,Preethi,Nair,preethi.nair@shopstream.in,Store Manager,ST006,70000,2022-05-15,true
+E007,Santosh,Joshi,santosh.joshi@shopstream.in,Store Manager,ST007,68000,2022-06-15,true
+E008,Kavitha,Menon,kavitha.menon@shopstream.in,Store Manager,ST008,65000,2022-07-15,false
+E009,Arun,Gupta,arun.gupta@shopstream.in,Sales Associate,ST001,35000,2022-02-01,true
+E010,Deepa,Singh,deepa.singh@shopstream.in,Sales Associate,ST002,33000,2022-02-15,true

@@ -1,0 +1,9 @@
+supplier_id,supplier_name,contact_email,country,city,lead_time_days,rating,is_active,created_at
+S001,TechDistributors India,contact@techdist.in,India,Mumbai,7,4.5,true,2021-06-01
+S002,SportsBrands Co,info@sportsbrands.in,India,Delhi,10,4.2,true,2021-07-15
+S003,HomeTextiles Ltd,supply@hometextiles.in,India,Surat,5,4.8,true,2021-06-15
+S004,KitchenPro Imports,orders@kitchenpro.in,India,Chennai,14,4.0,true,2021-08-01
+S005,FitnessPro Supply,contact@fitnesspro.in,India,Pune,7,4.6,true,2021-09-01
+S006,WoodCraft Furniture,sales@woodcraft.in,India,Jaipur,21,4.3,true,2021-10-01
+S007,NutriSupply India,orders@nutrisupply.in,India,Hyderabad,10,4.7,true,2021-11-01
+S008,FashionBrands Hub,supply@fashionbrands.in,India,Bangalore,12,4.1,true,2021-12-01

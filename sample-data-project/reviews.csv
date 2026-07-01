@@ -1,0 +1,7 @@
+review_id,order_id,product_id,customer_id,rating,review_title,review_text,is_verified,created_at
+R001,O001,P001,C001,5,Amazing TV,Picture quality is outstanding. Best purchase ever.,true,2024-01-13
+R002,O002,P002,C002,4,Good shoes,Comfortable and durable. Slightly narrow fit.,true,2024-01-16
+R003,O004,P003,C004,5,Excellent quality,Very soft fabric. Exactly as described.,true,2024-01-14
+R004,O006,P008,C006,3,Average product,Expected better quality for this price.,true,2024-01-26
+R005,O008,P006,C008,5,Perfect yoga mat,Non-slip surface. Great thickness.,true,2024-01-24
+R006,O010,P009,C010,4,Good jeans,Nice fit and good material. Color faded slightly after wash.,true,2024-02-05
