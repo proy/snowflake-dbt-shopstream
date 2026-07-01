@@ -1,0 +1,42 @@
+{
+  "name": "ShopStream — Snowflake + dbt + AWS + Airflow",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "context": ".."
+  },
+  "forwardPorts": [8080],
+  "portsAttributes": {
+    "8080": {
+      "label": "Airflow Web UI",
+      "onAutoForward": "notify"
+    }
+  },
+  "postCreateCommand": "pre-commit install || true",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "innoverio.vscode-dbt-power-user",
+        "Snowflake.snowflake-vsc",
+        "amazonwebservices.aws-toolkit-vscode",
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "dorzey.vscode-sqlfluff",
+        "eamodio.gitlens",
+        "GitHub.vscode-pull-request-github",
+        "redhat.vscode-yaml",
+        "mikestead.dotenv"
+      ],
+      "settings": {
+        "python.defaultInterpreterPath": "/usr/local/bin/python",
+        "editor.formatOnSave": true,
+        "[sql]": {
+          "editor.defaultFormatter": "dorzey.vscode-sqlfluff"
+        },
+        "dbt.dbtPythonPathOverride": "/usr/local/bin/python",
+        "sqlfluff.dialect": "snowflake",
+        "sqlfluff.templater": "dbt"
+      }
+    }
+  },
+  "remoteUser": "vscode"
+}

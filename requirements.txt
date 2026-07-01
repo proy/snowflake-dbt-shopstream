@@ -1,0 +1,20 @@
+# dbt — Snowflake adapter pulls in dbt-core as a dependency
+dbt-core
+dbt-snowflake
+
+# AWS
+boto3
+
+# Snowflake direct connector (useful outside dbt, e.g. in Airflow operators)
+snowflake-connector-python[pandas]
+
+# Airflow — installed first in Dockerfile to resolve strict transitive constraints
+apache-airflow[snowflake,amazon]
+
+# SQL linting (Snowflake dialect, dbt Jinja-aware)
+sqlfluff
+sqlfluff-templater-dbt
+
+# Dev tooling
+pre-commit
+python-dotenv
