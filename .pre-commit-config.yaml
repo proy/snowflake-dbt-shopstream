@@ -1,0 +1,33 @@
+repos:
+  # General hygiene checks
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      - id: trailing-whitespace        # removes trailing spaces
+      - id: end-of-file-fixer          # ensures files end with a newline
+      - id: check-yaml                 # validates YAML syntax
+      - id: check-json                 # validates JSON syntax
+      - id: check-merge-conflict       # blocks if merge conflict markers exist
+      - id: detect-private-key         # blocks private keys from being committed
+
+  # # Secrets detection — important since you use Snowflake credentials
+  # - repo: https://github.com/Yelp/detect-secrets
+  #   rev: v1.5.0
+  #   hooks:
+  #     - id: detect-secrets
+  #       args: ['--baseline', '.secrets.baseline']
+
+  # SQL formatting for dbt
+  - repo: https://github.com/sqlfluff/sqlfluff
+    rev: 3.1.0
+    hooks:
+      - id: sqlfluff-lint
+        args: [--dialect, snowflake]
+        files: \.sql$         # catches all .sql files anywhere in the repo
+
+  # # dbt best practices
+  # - repo: https://github.com/dbt-checkpoint/dbt-checkpoint
+  #   rev: v2.0.4
+  #   hooks:
+  #     - id: check-model-has-description  # every model must have a description
+  #     - id: check-model-has-tests        # every model must have at least one test
