@@ -29,6 +29,8 @@ profiles.yml
 *.pem
 *.p8
 *.key
+shopstream-secrets.sh
+*.sh.local
 
 # ── Airflow ──────────────────────────────────────────────────────────────────
 airflow.db
