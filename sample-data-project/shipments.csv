@@ -1,7 +1,7 @@
-review_id,order_id,product_id,customer_id,rating,review_title,review_text,is_verified,created_at
-R001,O001,P001,C001,5,Amazing TV,Picture quality is outstanding. Best purchase ever.,true,2024-01-13
-R002,O002,P002,C002,4,Good shoes,Comfortable and durable. Slightly narrow fit.,true,2024-01-16
-R003,O004,P003,C004,5,Excellent quality,Very soft fabric. Exactly as described.,true,2024-01-14
-R004,O006,P008,C006,3,Average product,Expected better quality for this price.,true,2024-01-26
-R005,O008,P006,C008,5,Perfect yoga mat,Non-slip surface. Great thickness.,true,2024-01-24
-R006,O010,P009,C010,4,Good jeans,Nice fit and good material. Color faded slightly after wash.,true,2024-02-05
+shipment_id,order_id,carrier,tracking_number,shipment_status,shipped_date,estimated_delivery,actual_delivery,created_at
+SH001,O001,BlueDart,BD001234567,DELIVERED,2024-01-06,2024-01-10,2024-01-09,2024-01-06 09:00:00
+SH002,O002,Delhivery,DL002345678,DELIVERED,2024-01-09,2024-01-14,2024-01-13,2024-01-09 10:00:00
+SH003,O005,FedEx,FX003456789,RETURNED,2024-01-16,2024-01-22,2024-01-20,2024-01-16 11:00:00
+SH004,O006,BlueDart,BD004567890,DELIVERED,2024-01-19,2024-01-24,2024-01-23,2024-01-19 09:30:00
+SH005,O007,Delhivery,DL005678901,IN_TRANSIT,2024-01-21,2024-01-26,,2024-01-21 10:30:00
+SH006,O009,FedEx,FX006789012,IN_TRANSIT,2024-01-26,2024-01-31,,2024-01-26 11:30:00
