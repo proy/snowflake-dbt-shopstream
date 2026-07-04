@@ -1,10 +1,5 @@
 FROM mcr.microsoft.com/devcontainers/python:3.12
 
-# Install claude code as well for AI programming
-RUN curl -fsSL https://claude.ai/install.sh | bash && \
-    mv /root/.local/bin/claude /usr/local/bin/claude
-
-
 # Install AWS CLI v2 (not available via pip — use official binary)
 RUN curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "/tmp/awscliv2.zip" \
     && unzip /tmp/awscliv2.zip -d /tmp \

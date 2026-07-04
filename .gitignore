@@ -48,3 +48,8 @@ standalone_admin_password.txt
 # ── OS ───────────────────────────────────────────────────────────────────────
 .DS_Store
 Thumbs.db
+
+# ── Odbt ───────────────────────────────────────────────────────────────────────
+shopstream/target/
+shopstream/dbt_packages/
+shopstream/logs/
