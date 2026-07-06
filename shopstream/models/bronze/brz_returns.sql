@@ -18,7 +18,7 @@ renamed as (
         upper(trim(return_reason)) as return_reason,
         upper(trim(return_status)) as return_status,
         -- audit columns
-        upper(trim(return_method)) as refund_method,
+        upper(trim(refund_method)) as refund_method,
         current_timestamp() as _loaded_at
 
     from source

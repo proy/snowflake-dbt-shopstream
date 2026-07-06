@@ -10,13 +10,13 @@ renamed as (
         shipment_id,
         order_id,
         upper(trim(carrier)) as carrier,
-        tracking_number,
+        upper(trim(tracking_number)) as tracking_number,
         upper(trim(shipment_status)) as shipment_status,
-        shipped_date::timestamp as shipped_date,
-        estimated_delivery::timestamp as estimated_delivery,
-        actual_delivery::timestamp as actual_delivery
+        shipped_date::date as shipped_date,
+        estimated_delivery::date as estimated_delivery,
+        actual_delivery::date as actual_delivery,
 
-        created_at::timestamp as created_at
+        created_at::timestamp as created_at,
         -- audit columns
         current_timestamp()     as _loaded_at,
         'raw_shipments'         as _source_table

@@ -19,10 +19,8 @@ renamed as (
         updated_at::TIMESTAMP as updated_at,
 
         'raw_orders' as _source_table,
-        TRIM(order_status) as order_status,
-
-        -- audit columns
-        TRIM(order_channel) as order_channel,
+        UPPER(TRIM(order_status)) as order_status,
+        UPPER(TRIM(order_channel)) as order_channel,
         CURRENT_TIMESTAMP() as _loaded_at
 
     from source

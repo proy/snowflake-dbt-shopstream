@@ -19,7 +19,7 @@ renamed as (
         upper(trim(category)) as category,
 
         -- audit columns
-        upper(trim(sub_category)) as sub_category,
+        upper(trim(subcategory)) as sub_category,
         current_timestamp() as _loaded_at
 
     from source

@@ -11,18 +11,15 @@ renamed as (
         first_name,
         last_name,
         email,
-        phone,
         store_id,
-        salary,
+        salary::number as salary,
         hire_date::date as hire_date,
         is_active::boolean as is_active,
-        created_at::timestamp as created_at,
         -- timestamps
-        updated_at::timestamp as updated_at,
         'raw_employees' as _source_table,
 
         -- audit columns
-        TRIIM(role) as role,
+        UPPER(TRIM(role)) as role,
         CURRENT_TIMESTAMP() as _loaded_at
 
     from source

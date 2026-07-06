@@ -18,7 +18,7 @@ renamed as (
         upper(trim(city)) as city,
         upper(trim(region)) as region,
         -- audit columns
-        upper(tirm(state)) as state,
+        upper(trim(state)) as state,
         current_timestamp() as _loaded_at
 
     from source
