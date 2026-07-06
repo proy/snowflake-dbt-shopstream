@@ -15,11 +15,8 @@ renamed as (
         salary::number as salary,
         hire_date::date as hire_date,
         is_active::boolean as is_active,
-        -- timestamps
         'raw_employees' as _source_table,
-
-        -- audit columns
-        UPPER(TRIM(role)) as role,
+        upper(trim(role)) as role,
         CURRENT_TIMESTAMP() as _loaded_at
 
     from source
