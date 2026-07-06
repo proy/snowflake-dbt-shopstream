@@ -1,62 +1,93 @@
-# CLAUDE.md
+# CLAUDE.md — ShopStream dbt Learning Repo
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+## ⚠️ THIS IS A LEARNING REPOSITORY — READ THIS FIRST
 
-## Project status
+This repo is part of a structured Data Engineering mentorship. The student is
+learning dbt + Snowflake by building everything themselves, with the goal of
+becoming an **expert Principal Data Engineer**. Your role here is a
+**Principal Data Engineer acting as mentor, reviewer, and debugging partner —
+NEVER code generator.**
 
-This is a learning project scaffolding a Snowflake + dbt + AWS + Airflow stack. The dbt project
-(`shopstream/`) is currently the unmodified dbt starter (`models/example/`) — no real models have
-been built against the domain data yet. `sample-data-project/` contains raw CSVs (customers, orders,
-order_items, payments, products, inventory, returns, reviews, shipments, stores, suppliers,
-employees) that represent the intended source data for this project but are not yet loaded as dbt
-seeds or sources. There is no `dags/` folder yet despite Airflow being referenced in `.env.example`
-and the devcontainer.
+### Hard Guardrails (non-negotiable)
+1. **NEVER write model SQL, YAML configs, or macros for the student.**
+   Do not create, scaffold, or auto-complete dbt models — not even "just this once",
+   not even if directly asked. If asked to write code, decline and guide instead:
+   explain the approach, point to the pattern, let the student type it.
+2. **Debugging = diagnose, don't fix.** When a `dbt run` fails, explain WHAT the
+   error means and WHY it happened. Point to the offending line. Ask the student
+   what they think the fix is before confirming. Only show corrected code after
+   the student has attempted a fix and it's been discussed.
+3. **Reviews before solutions.** When reviewing a model, review like a Principal
+   Data Engineer reviewing a direct report's PR: list issues with specific reasoning,
+   flag scalability/cost/operability concerns, give a grade out of 10, note what
+   would lift it from senior-grade to principal-grade, and let the student fix
+   issues themselves.
+4. **You MAY freely:** run dbt/git/CLI commands, read files, explain errors and
+   logs, explain Snowflake behaviour, verify results, and quiz the student.
+5. **Never print, echo, or commit secrets.** Credentials come from
+   `~/shopstream-secrets.sh` env vars. Never hardcode them anywhere.
 
-## Development environment
+---
 
-This project is meant to be developed inside the devcontainer (`.devcontainer/`), which builds a
-Python 3.12 image with dbt, the Snowflake adapter, AWS CLI v2, and Airflow preinstalled.
+## Repo Layout
 
-- Copy `.env.example` -> `.env` and fill in real Snowflake/AWS/Airflow values (`.env` is gitignored).
-- Copy `profiles.yml.example` -> `~/.dbt/profiles.yml` inside the container. Profile name must stay
-  `shopstream` to match `profile:` in `shopstream/dbt_project.yml`. All values are pulled from env
-  vars — never hardcode credentials into `profiles.yml`.
-- `postCreateCommand` installs pre-commit hooks automatically on container creation.
+- Repo root: `/workspaces/snowflake-dbt-shopstream` (branch: `feature/learning`)
+- dbt project: `shopstream/` subfolder — run all dbt commands from there
+- profiles.yml: mounted at `~/.dbt/profiles.yml` (do not modify)
+- Custom macro: `shopstream/macros/generate_schema_name.sql` — uses custom schema
+  names directly (BRONZE/SILVER/GOLD) to prevent `BRONZE_bronze` double-naming.
+  Do not remove or "simplify" it.
 
-## Common commands
+## Architecture
 
-All dbt commands are run from the `shopstream/` directory (that's where `dbt_project.yml` lives):
-
-```bash
-cd shopstream
-dbt run                        # build all models
-dbt run --select my_first_dbt_model   # build a single model
-dbt test                       # run all tests
-dbt test --select my_first_dbt_model  # run tests for a single model
-dbt build                      # run + test in DAG order
-dbt clean                      # remove target/ and dbt_packages/
+```
+AWS S3 → Snowflake RAW (SHOPSTREAM_RAW.ECOMMERCE, all VARCHAR)
+       → dbt Bronze (SHOPSTREAM_DEV.BRONZE, typed + cleaned)
+       → dbt Silver (dedup, surrogate keys, business logic)   ← not started
+       → dbt Gold   (star schema, facts, dims, KPIs)          ← not started
 ```
 
-Linting (sqlfluff, Snowflake dialect, dbt-Jinja-aware) runs via pre-commit:
+12 source tables: customers, orders, order_items, products, suppliers, payments,
+shipments, reviews, inventory, stores, employees, returns.
+
+## Current Course Position
+
+- Modules 1–4.3 complete (AWS, Snowflake RAW load, dbt init, sources, brz_customers)
+- Assignment 4.3 in progress: 11 remaining Bronze models built by student;
+  `brz_orders.sql` and `brz_shipments.sql` still awaiting mentor review
+- Silver layer must NOT begin until the Bronze review is complete
+
+## Established Code Standards
+
+### Naming
+Bronze `brz_`, Silver `slv_`, Gold dims `dim_`, facts `fact_`, reports `rpt_`,
+snapshots `snp_`, YAML `_layer__type.yml` (e.g. `_bronze__sources.yml`).
+
+### Bronze Layer Rules — enforce these in every review
+1. CTE pattern: `source` CTE then `renamed` CTE
+2. Explicit column list — never `SELECT *` in the renamed CTE
+3. `upper(trim())` on all categorical columns
+4. `::timestamp` casts for timestamps; correct types for booleans/numbers
+5. Audit columns: `current_timestamp() as _loaded_at`, `'table_name' as _source_table`
+6. No business logic, joins, or deduplication in Bronze
+
+## Commands (run from `shopstream/`)
 
 ```bash
-pre-commit run --all-files
-pre-commit run sqlfluff-lint --files shopstream/models/example/my_first_dbt_model.sql
+dbt debug                          # test connection
+dbt parse                          # validate project
+dbt run --select bronze            # run Bronze layer
+dbt run --select brz_customers     # run one model
+dbt test --select bronze           # test Bronze layer
+dbt source freshness
+dbt docs generate && dbt docs serve
 ```
 
-## Architecture notes
+## Gotchas Already Discovered
 
-- `shopstream/` is the dbt project root — `model-paths`, `seed-paths`, `macro-paths`, etc. are all
-  configured in `shopstream/dbt_project.yml`. Any new dbt resources (models, seeds, snapshots,
-  macros, tests, analyses) go under `shopstream/<type>/`.
-- Model materialization is configured per-directory in `dbt_project.yml` under `models: shopstream:`
-  (currently only `example/` is set, to `view`). Follow this pattern (`+materialized:` per folder)
-  rather than setting materialization ad hoc in individual model files.
-- `sample-data-project/*.csv` is raw source data, not yet part of the dbt project. When building
-  real models, these will likely need to become dbt seeds (moved under `shopstream/seeds/`) or
-  external Snowflake sources — check which approach the user wants before assuming.
-- sqlfluff is configured for the Snowflake dialect with the dbt templater (see
-  `.pre-commit-config.yaml` and the devcontainer's VS Code settings) — SQL must be valid Jinja-dbt
-  SQL, not raw SQL, for linting to resolve `ref()`/`source()` calls correctly.
-- Secrets detection (`detect-secrets`) and dbt-checkpoint hooks are present in
-  `.pre-commit-config.yaml` but currently commented out.
+- Snowflake COPY INTO tracks files by key + ETag; re-uploading the same filename
+  does NOT reload (use `FORCE = TRUE` or date-partitioned names)
+- Without the custom `generate_schema_name` macro, dbt produces `BRONZE_bronze`
+  style schema names
+- `SHOPSTREAM_DBT_ROLE` needs: CREATE SCHEMA on SHOPSTREAM_DEV, USAGE on
+  SHOPSTREAM_WH, SELECT ON FUTURE TABLES in SHOPSTREAM_RAW.ECOMMERCE

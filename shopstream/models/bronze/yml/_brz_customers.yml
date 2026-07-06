@@ -1,0 +1,37 @@
+version: 2
+
+models:
+  - name: brz_customers
+    description: >
+      Bronze layer customer records. Renamed columns, standardized
+      categorical fields to uppercase, cast timestamps to correct
+      data types. Contains duplicates as they exist in the source —
+      deduplication happens in the Silver layer.
+
+    columns:
+      - name: customer_id
+        description: "Unique identifier for each customer. Sourced from raw_customers."
+        tests:
+          - not_null
+
+      - name: email
+        description: "Customer email address."
+        tests:
+          - not_null
+
+      - name: segment
+        description: "Customer segment uppercased. Values: PREMIUM, STANDARD, BRONZE."
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['PREMIUM', 'STANDARD', 'BRONZE']
+
+      - name: _loaded_at
+        description: "Timestamp when this record was loaded into the Bronze layer by dbt."
+        tests:
+          - not_null
+
+      - name: _source_table
+        description: "Name of the RAW source table this record originated from."
+        tests:
+          - not_null
