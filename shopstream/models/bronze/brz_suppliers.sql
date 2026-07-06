@@ -16,7 +16,6 @@ renamed as (
         created_at::timestamp as created_at,
         'raw_suppliers' as _source_table,
         upper(trim(country)) as country,
-        -- audit columns
         upper(trim(city)) as city,
         current_timestamp() as _loaded_at
 

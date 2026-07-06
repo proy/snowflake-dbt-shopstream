@@ -17,7 +17,7 @@ renamed as (
         is_active::boolean as is_active,
         'raw_employees' as _source_table,
         upper(trim(role)) as role,
-        CURRENT_TIMESTAMP() as _loaded_at
+        current_timestamp() as _loaded_at
 
     from source
 

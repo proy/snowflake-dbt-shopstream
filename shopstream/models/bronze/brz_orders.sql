@@ -11,17 +11,17 @@ renamed as (
         customer_id,
         store_id,
 
-        order_date::DATE as order_date,
-        total_amount::NUMBER as total_amount,
-        discount_amount::NUMBER as discount_amount,
-        shipping_amount::NUMBER as shipping_amount,
-        created_at::TIMESTAMP as created_at,
-        updated_at::TIMESTAMP as updated_at,
+        order_date::date as order_date,
+        total_amount::number as total_amount,
+        discount_amount::number as discount_amount,
+        shipping_amount::number as shipping_amount,
+        created_at::timestamp as created_at,
+        updated_at::timestamp as updated_at,
 
         'raw_orders' as _source_table,
-        UPPER(TRIM(order_status)) as order_status,
-        UPPER(TRIM(order_channel)) as order_channel,
-        CURRENT_TIMESTAMP() as _loaded_at
+        upper(trim(order_status)) as order_status,
+        upper(trim(order_channel)) as order_channel,
+        current_timestamp() as _loaded_at
 
     from source
 
