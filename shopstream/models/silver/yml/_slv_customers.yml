@@ -1,0 +1,27 @@
+version: 2
+
+models:
+  - name: slv_customers
+    description: >
+      Silver layer customer records. Deduplicated to one row per customer_id
+      keeping the most recently updated record. Ready for surrogate key
+      generation and consumption by Gold layer dimension models.
+
+    columns:
+      - name: customer_id
+        description: "Business key for the customer. Unique after deduplication."
+        tests:
+          - not_null
+          - unique
+
+      - name: email
+        description: "Customer email address."
+        tests:
+          - not_null
+
+      - name: segment
+        description: "Customer segment. Values: PREMIUM, STANDARD, BRONZE."
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['PREMIUM', 'STANDARD', 'BRONZE']
