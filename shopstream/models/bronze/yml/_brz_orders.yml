@@ -1,0 +1,76 @@
+version: 2
+
+models:
+  - name: brz_orders
+    description: >
+      Bronze layer order records. Renamed columns, standardized
+      categorical fields to uppercase, cast timestamps to correct
+      data types. Contains duplicates as they exist in the source —
+      deduplication happens in the Silver layer.
+
+    columns:
+      - name: order_id
+        description: "Unique identifier for each order. Sourced from raw_order."
+        tests:
+          - not_null
+          - unique
+
+      - name: customer_id
+        description: "customer identifier who placed the order"
+        tests:
+          - not_null
+
+      - name: store_id
+        description: "store identifier from where the order is placed or order will be delivered"
+        tests:
+          - not_null
+
+      - name: order_date
+        description: "Date on which the order is placed"
+        tests:
+          - not_null
+
+      - name: order_status
+        description: "Status of the order"
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['DELIVERED', 'RETURNED', 'PROCESSING','SHIPPED','CANCELLED']
+
+      - name: order_channel
+        description: "channel from where the order is place online or in-store"
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['ONLINE', 'IN_STORE']
+
+      - name: total_amount
+        description: "Total amount of the order"
+        tests:
+          - not_null
+
+
+      - name: discount_amount
+        description: "discount given on the order"
+        tests:
+          - not_null
+
+      - name: created_at
+        description: "timestamp when the order was created"
+        tests:
+          - not_null
+
+      - name: updated_at
+        description: "Timestamp when the order was updated"
+        tests:
+          - not_null
+
+      - name: _loaded_at
+        description: "Timestamp when this record was loaded into the Bronze layer by dbt."
+        tests:
+          - not_null
+
+      - name: _source_table
+        description: "Name of the RAW source table this record originated from."
+        tests:
+          - not_null
